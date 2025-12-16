@@ -1,5 +1,6 @@
 # Zadanie1-Programowanie-Full-Stack-w-Chmurze-Obliczeniowej
 
+# ----- Część obowiązkowa -----
 ## Tworzenie klastra:
 
 <img width="741" height="24" alt="Zrzut ekranu 2025-12-16 o 1 51 01 AM" src="https://github.com/user-attachments/assets/2c4ed1f9-efdb-4026-b955-7308cf15fd6f" />
@@ -36,3 +37,35 @@
 
 
 <img width="959" height="306" alt="Zrzut ekranu 2025-12-16 o 1 53 35 AM" src="https://github.com/user-attachments/assets/f6ec3f2e-2f98-48ca-abb6-4405ecb643ca" />
+
+
+# ----- Część nieobowiązkowa -----
+### 1. TAK, możliwe jest dokonanie aktualizacji aplikacji frontend, co potwierdza dokumentacja: 
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#migrating-deployments-and-statefulsets-to-horizontal-autoscaling
+
+### 2. Dobór parametrów strategii RollingUpdate
+
+Ze względu na ograniczenia **ResourceQuota** limit CPU: 1000m oraz zapotrzebowanie pojedynczego poda 200m, maksymalna liczba podów w przestrzeni `frontend` to **5**. Dlatego dla HPA należy:
+### a)
+* **`maxUnavailable: 1`**
+    Realizuje utrzymanie **minimum 2 aktywnych Podów**.
+    *Uzasadnienie:* Przy minimalnej liczbie replik z HPA, zezwolenie na niedostępność jednej gwarantuje, że dwie pozostaną aktywne.
+### b)
+* **`maxSurge: 0`**
+    Gwarantuje **nieprzekroczenie limitów ResourceQuota**.
+  Przy maksymalnym wyskalowaniu limit zasobów jest w pełni wykorzystany. Ustawienie 0 wymusza terminację starego poda przed utworzeniem nowego, zapobiegając błędom `Forbidden`, brak wolnego CPU.
+
+```yaml
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1  # Gwarancja min. 2 aktywnych podów
+      maxSurge: 0        # Ochrona przed przekroczeniem ResourceQuota
+```
+
+### c) Korelacja ustawień autoskalera HPA
+
+Nie wprowadzono zmian w ustawieniach HPA, parametry minReplicas: 3 oraz maxReplicas: 5 pozostają bez zmian.
+
+Obecna konfiguracja HPA jest zgodna z przyjętą strategią aktualizacji. maxSurge: 0 w deploymentcie zapewnia bezpieczeństwo zasobów nawet przy maksymalnym wyskalowaniu do 5 replik.
