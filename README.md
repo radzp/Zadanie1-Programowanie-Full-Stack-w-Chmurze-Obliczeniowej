@@ -18,13 +18,17 @@
 
 <img width="1258" height="818" alt="Zrzut ekranu 2025-12-16 o 1 52 11 AM" src="https://github.com/user-attachments/assets/c403396a-63db-4c5c-bc50-2dec268fd402" />
 
+## Tworzenie podów testowych:
+
 <img width="379" height="97" alt="Zrzut ekranu 2025-12-16 o 1 52 44 AM" src="https://github.com/user-attachments/assets/b6f4f7c9-ead3-4ae1-9693-3c2d005fc6a3" />
 
 <img width="1005" height="493" alt="Zrzut ekranu 2025-12-16 o 1 53 03 AM" src="https://github.com/user-attachments/assets/c9c35014-31fc-46af-bb19-a1a2f85a50c7" />
 
+## Weryfikacja Network Policies:
 
 <img width="1083" height="541" alt="Zrzut ekranu 2025-12-16 o 1 53 21 AM" src="https://github.com/user-attachments/assets/375c33de-52db-4fcf-88d5-29138f7b0943" />
 
+## Obciążenie:
 
 <img width="608" height="108" alt="Zrzut ekranu 2025-12-16 o 1 53 50 AM" src="https://github.com/user-attachments/assets/f3365d92-e69d-4470-8bac-032e905bec7f" />
 
