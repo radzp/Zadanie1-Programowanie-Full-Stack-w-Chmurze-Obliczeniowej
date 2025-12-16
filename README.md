@@ -48,8 +48,7 @@ https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#migra
 Ze względu na ograniczenia **ResourceQuota** limit CPU: 1000m oraz zapotrzebowanie pojedynczego poda 200m, maksymalna liczba podów w przestrzeni `frontend` to **5**. Dlatego dla HPA należy:
 ### a)
 * **`maxUnavailable: 1`**
-    Realizuje utrzymanie **minimum 2 aktywnych Podów**.
-    *Uzasadnienie:* Przy minimalnej liczbie replik z HPA, zezwolenie na niedostępność jednej gwarantuje, że dwie pozostaną aktywne.
+    Realizuje utrzymanie **minimum 2 aktywnych Podów**. Przy minimalnej liczbie replik z HPA, zezwolenie na niedostępność jednej gwarantuje, że dwie pozostaną aktywne.
 ### b)
 * **`maxSurge: 0`**
     Gwarantuje **nieprzekroczenie limitów ResourceQuota**.
