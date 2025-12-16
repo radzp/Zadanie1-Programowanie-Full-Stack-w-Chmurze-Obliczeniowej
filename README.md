@@ -68,3 +68,5 @@ spec:
 Nie wprowadzono zmian w ustawieniach HPA, parametry minReplicas: 3 oraz maxReplicas: 5 pozostają bez zmian.
 
 Obecna konfiguracja HPA jest zgodna z przyjętą strategią aktualizacji. maxSurge: 0 w deploymentcie zapewnia bezpieczeństwo zasobów nawet przy maksymalnym wyskalowaniu do 5 replik.
+
+# Opis tworzonych obiektów znajduje się w pliku Opis Obiektów.txt w plikach.
