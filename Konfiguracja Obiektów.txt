@@ -1,0 +1,10 @@
+. Konfiguracja Obiektów
+Przestrzenie nazw (01-namespaces.yaml): Utworzono frontend i backend dla separacji warstw.
+Wdrożenia (02-deployments-and-pod.yaml):
+Frontend: 3 repliki, unika węzła bazy danych (NodeAffinity).
+Backend/MySQL: Uruchamiane na tym samym węźle (PodAffinity) dla wydajności.
+Serwisy (03-services.yaml): Frontend dostępny publicznie (NodePort 30080), Backend i MySQL tylko wewnętrznie (ClusterIP).
+Limity (04-resource-quotas.yaml): Frontend max 1000m CPU (10 podów), Backend max 1000m CPU (3 pody).
+HPA (05-hpa-frontend.yaml): Skaluje frontend (3-5 replik) przy 50% CPU. Max 5 replik wynika z limitu Quota.
+Polityki sieciowe (06-network-policies.yaml): Ruch domyślnie zablokowany. Dozwolone tylko ścieżki: Frontend→Backend, Backend→MySQL oraz DNS.
+Testy (07-test-pods.yaml): Pomocnicze pody curl do weryfikacji polityk sieciowych.
